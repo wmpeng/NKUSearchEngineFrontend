@@ -25,12 +25,12 @@ public class Util {
     private static Map<String, Object> readJson(String path) {
         String content;
         InputStream input = Util.class.getResourceAsStream(path);
-        assert input != null : "Config path is not exist.";
+//        assert input != null : "Config path is not exist.";
 
         try {
             content = new String(input.readAllBytes());
-        } catch (IOException e) {
-            content = "";
+        } catch (Exception e) {
+            content = "{}";
         }
         JSONObject jsonObject = new JSONObject(content);
         return jsonObject.toMap();

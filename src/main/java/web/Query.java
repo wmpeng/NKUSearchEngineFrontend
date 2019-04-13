@@ -4,6 +4,7 @@ import common.Util;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -17,7 +18,7 @@ public class Query {
             String host = (String) Util.getConfig("search_server.host");
             Socket socket = new Socket(host, port);
 
-            PrintWriter serverWriter = new PrintWriter(socket.getOutputStream());
+            PrintWriter serverWriter = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"));
             serverWriter.println(queryStr);
             serverWriter.flush();
 
